@@ -5,110 +5,135 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
     line-height: 1.6;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #f5f7fa;
     min-height: 100vh;
-    padding: 20px;
+    padding: 0;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    background: transparent;
+    padding: 20px;
 }
 
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     padding: 40px;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    color: #2c3e50;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
 header p {
-    font-size: 1.1rem;
-    opacity: 0.95;
+    font-size: 1rem;
+    color: #7f8c8d;
 }
 
 main {
-    padding: 40px;
+    padding: 0;
 }
 
 .questions-section h2 {
-    color: #333;
+    color: #2c3e50;
     margin-bottom: 25px;
-    font-size: 1.8rem;
-    border-bottom: 3px solid #667eea;
-    padding-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-left: 10px;
 }
 
 .question-list {
     display: grid;
-    gap: 10px;
+    gap: 15px;
 }
 
-/* 아코디언 아이템 컨테이너 */
+/* 카드 스타일 아이템 */
 .qa-item {
-    background: #f8f9fa;
-    border-radius: 10px;
-    border: 2px solid transparent;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     transition: all 0.3s ease;
 }
 
+.qa-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
 .qa-item.active {
-    border-color: #667eea;
-    background: #fff;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
 }
 
 /* 질문 부분 */
 .question-header {
-    padding: 20px;
+    padding: 24px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: background 0.3s ease;
+    transition: background 0.2s ease;
     position: relative;
-    padding-left: 50px;
+    padding-left: 60px;
 }
 
 .question-header:hover {
-    background: #e9ecef;
+    background: #f8f9fa;
 }
 
-.question-header::before {
-    content: "Q.";
-    color: #667eea;
-    font-weight: bold;
-    font-size: 1.2rem;
+/* 번호 스타일 */
+.question-number {
     position: absolute;
     left: 20px;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 /* 화살표 아이콘 */
-.question-header::after {
-    content: "▼";
-    color: #667eea;
-    font-size: 0.8rem;
+.arrow-icon {
+    width: 24px;
+    height: 24px;
+    color: #94a3b8;
     transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.qa-item.active .question-header::after {
+.arrow-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.qa-item.active .arrow-icon {
     transform: rotate(180deg);
+    color: #3b82f6;
 }
 
 .question-text {
     flex: 1;
     margin-right: 20px;
+    color: #334155;
+    font-size: 1.05rem;
+    font-weight: 500;
 }
 
 /* 답변 부분 */
@@ -116,36 +141,26 @@ main {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
-    background: #f0f8ff;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
 }
 
 .qa-item.active .answer-wrapper {
-    max-height: 500px;
+    max-height: 800px;
 }
 
 .answer-content {
-    padding: 25px;
-    padding-left: 50px;
-    color: #444;
+    padding: 24px;
+    padding-left: 60px;
+    color: #475569;
     line-height: 1.8;
-    font-size: 1.05rem;
-    position: relative;
-}
-
-.answer-content::before {
-    content: "A.";
-    color: #764ba2;
-    font-weight: bold;
-    font-size: 1.2rem;
-    position: absolute;
-    left: 20px;
-    top: 25px;
+    font-size: 1rem;
 }
 
 @keyframes slideDown {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-10px);
     }
     to {
         opacity: 1;
@@ -158,45 +173,20 @@ main {
 }
 
 footer {
-    background: #f8f9fa;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     padding: 20px;
     text-align: center;
-    color: #666;
-    border-top: 1px solid #e9ecef;
+    color: #7f8c8d;
+    margin-top: 40px;
+    font-size: 0.9rem;
 }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-
-    header p {
-        font-size: 1rem;
-    }
-
-    main {
-        padding: 20px;
-    }
-
-    .question-header {
+    .container {
         padding: 15px;
-        padding-left: 45px;
-    }
-
-    .qa-item.active .answer-wrapper {
-        max-height: 600px;
-    }
-
-    .answer-content {
-        font-size: 1rem;
-        padding: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
     }
 
     header {
@@ -208,28 +198,101 @@ footer {
     }
 
     .questions-section h2 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
     }
 
     .question-header {
-        padding: 12px;
-        padding-left: 40px;
-        font-size: 0.95rem;
+        padding: 20px;
+        padding-left: 55px;
     }
 
-    .question-header::before {
-        left: 12px;
+    .question-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+
+    .question-text {
         font-size: 1rem;
+    }
+
+    .qa-item.active .answer-wrapper {
+        max-height: 1000px;
     }
 
     .answer-content {
         padding: 20px;
-        padding-left: 40px;
+        padding-left: 55px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background: white;
+    }
+
+    .container {
+        padding: 0;
+    }
+
+    header {
+        border-radius: 0;
+        margin-bottom: 20px;
+    }
+
+    header h1 {
+        font-size: 1.3rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    .questions-section {
+        padding: 0 15px;
+    }
+
+    .questions-section h2 {
+        font-size: 1.2rem;
+        padding-left: 5px;
+    }
+
+    .qa-item {
+        border-radius: 12px;
+    }
+
+    .question-header {
+        padding: 16px;
+        padding-left: 50px;
+    }
+
+    .question-number {
+        left: 15px;
+        width: 24px;
+        height: 24px;
+        font-size: 0.8rem;
+    }
+
+    .question-text {
         font-size: 0.95rem;
     }
 
-    .answer-content::before {
-        left: 12px;
-        top: 20px;
+    .arrow-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .answer-content {
+        padding: 16px;
+        padding-left: 50px;
+        font-size: 0.9rem;
+    }
+
+    footer {
+        border-radius: 0;
+        margin-top: 30px;
+        font-size: 0.85rem;
     }
 }

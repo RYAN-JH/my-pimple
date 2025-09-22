@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 질문-답변 아이템 렌더링
     function renderQuestions() {
-        qaData.forEach((item) => {
+        qaData.forEach((item, index) => {
             // 전체 Q&A 컨테이너
             const qaItem = document.createElement('div');
             qaItem.className = 'qa-item';
@@ -13,11 +13,27 @@ document.addEventListener('DOMContentLoaded', function() {
             const questionHeader = document.createElement('div');
             questionHeader.className = 'question-header';
 
+            // 번호 추가
+            const questionNumber = document.createElement('div');
+            questionNumber.className = 'question-number';
+            questionNumber.textContent = (index + 1).toString().padStart(2, '0');
+
             const questionText = document.createElement('div');
             questionText.className = 'question-text';
             questionText.textContent = item.question;
 
+            // 화살표 아이콘 추가
+            const arrowIcon = document.createElement('div');
+            arrowIcon.className = 'arrow-icon';
+            arrowIcon.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            `;
+
+            questionHeader.appendChild(questionNumber);
             questionHeader.appendChild(questionText);
+            questionHeader.appendChild(arrowIcon);
 
             // 답변 래퍼
             const answerWrapper = document.createElement('div');
@@ -49,6 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // 모든 아이템 닫기
         document.querySelectorAll('.qa-item').forEach(item => {
             item.classList.remove('active');
+            const wrapper = item.querySelector('.answer-wrapper');
+            wrapper.style.maxHeight = '0';
         });
 
         // 클릭한 아이템이 닫혀있었으면 열기
@@ -59,10 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const answerWrapper = clickedItem.querySelector('.answer-wrapper');
             const answerContent = clickedItem.querySelector('.answer-content');
             answerWrapper.style.maxHeight = answerContent.scrollHeight + 'px';
-        } else {
-            // 이미 열려있던 것을 클릭하면 닫기
-            const answerWrapper = clickedItem.querySelector('.answer-wrapper');
-            answerWrapper.style.maxHeight = '0';
         }
     }
 
