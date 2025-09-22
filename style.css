@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+main {
+    padding: 40px;
+}
+
+.questions-section h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 10px;
+}
+
+.question-list {
+    display: grid;
+    gap: 10px;
+}
+
+/* 아코디언 아이템 컨테이너 */
+.qa-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.qa-item.active {
+    border-color: #667eea;
+    background: #fff;
+}
+
+/* 질문 부분 */
+.question-header {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s ease;
+    position: relative;
+    padding-left: 50px;
+}
+
+.question-header:hover {
+    background: #e9ecef;
+}
+
+.question-header::before {
+    content: "Q.";
+    color: #667eea;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 20px;
+}
+
+/* 화살표 아이콘 */
+.question-header::after {
+    content: "▼";
+    color: #667eea;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.qa-item.active .question-header::after {
+    transform: rotate(180deg);
+}
+
+.question-text {
+    flex: 1;
+    margin-right: 20px;
+}
+
+/* 답변 부분 */
+.answer-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: #f0f8ff;
+}
+
+.qa-item.active .answer-wrapper {
+    max-height: 500px;
+}
+
+.answer-content {
+    padding: 25px;
+    padding-left: 50px;
+    color: #444;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    position: relative;
+}
+
+.answer-content::before {
+    content: "A.";
+    color: #764ba2;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 20px;
+    top: 25px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.qa-item.active .answer-content {
+    animation: slideDown 0.3s ease;
+}
+
+footer {
+    background: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    border-top: 1px solid #e9ecef;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .question-header {
+        padding: 15px;
+        padding-left: 45px;
+    }
+
+    .qa-item.active .answer-wrapper {
+        max-height: 600px;
+    }
+
+    .answer-content {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        padding: 30px 20px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .questions-section h2 {
+        font-size: 1.4rem;
+    }
+
+    .question-header {
+        padding: 12px;
+        padding-left: 40px;
+        font-size: 0.95rem;
+    }
+
+    .question-header::before {
+        left: 12px;
+        font-size: 1rem;
+    }
+
+    .answer-content {
+        padding: 20px;
+        padding-left: 40px;
+        font-size: 0.95rem;
+    }
+
+    .answer-content::before {
+        left: 12px;
+        top: 20px;
+    }
+}
